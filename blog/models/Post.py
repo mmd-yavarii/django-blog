@@ -11,6 +11,8 @@ class Post (models.Model):
     slug = models.SlugField(unique=True , verbose_name="اسلاگ")
     is_deleted = models.BooleanField(default=False)
 
+    image = models.ImageField(upload_to="media/posts/", null=True , blank=True, verbose_name="تصویر")
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -27,6 +29,18 @@ class Post (models.Model):
 
     def __str__ (self):
         return self.title
+
+    @property
+    def likes_count (self):
+        return self.likes.count()
+
+    @property
+    def comments_count (self):
+        return self.comments.count()
+
+    def delete(self, *args , **kwargs):
+        self.is_deleted = True
+        self.save()
 
     class Meta:
         ordering = ["-created_at"]

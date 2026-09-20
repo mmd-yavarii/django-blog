@@ -1,3 +1,8 @@
+from dotenv import load_dotenv
+from os import getenv
+
+load_dotenv()
+
 """
 Django settings for config project.
 
@@ -37,8 +42,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    "cloudinary", 
+    "cloudinary_storage",
+
     "blog"
 ]
+
+# cloudinary_storage setting 
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME":getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": getenv("CLOUDINARY_API_SECRET"),
+}
+STORAGES = {
+    "default": {
+        "BACKEND": "cloudinary_storage.storage.MediaCloudinaryStorage",
+    },
+    "staticfiles": {
+        "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+    },
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
