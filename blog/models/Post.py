@@ -4,6 +4,14 @@ from django.contrib.auth.models import User
 from uuid import uuid4
 
 
+class ModelManager (models.Manager):
+    def get_archived (self):
+        return self.filter(is_deleted=True)
+
+class PublishedManager (models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(status=Post.Status.PUBLISHED)
+
 class Post (models.Model):
     id = models.UUIDField(primary_key=True , editable=False , default=uuid4 , verbose_name="شناسه")
     title = models.CharField(max_length=100 , verbose_name="عنوان" , help_text="عنوان باید حداکثر ۱۰۰ کاراکتر باشد")
@@ -26,6 +34,9 @@ class Post (models.Model):
     author = models.ForeignKey(User , on_delete=models.CASCADE , related_name="posts", verbose_name="نویسنده")
     likes = models.ManyToManyField(User, related_name="likes", blank=True , verbose_name="لایک ها")
     comments = models.ManyToManyField(User , related_name="comments" , blank=True , through="Comment" , verbose_name="کامنت ها")
+
+    objects = ModelManager()
+    published = PublishedManager()
 
     def __str__ (self):
         return self.title
