@@ -8,3 +8,14 @@ class Comment(models.Model):
     content = models.TextField(null=False , blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__ (self):
+        return f"{self.post.title} comment"
+
+    class Meta:
+        ordering = ["-created_at"]
+        indexes = [
+            models.Index(fields=('-created_at',))
+        ]
+        verbose_name = "کامنت"
+        verbose_name_plural = "کامنت ها"
