@@ -1,0 +1,70 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/post-details.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="post-page">
+    <article class="post-card">
+        <header class="post-header">
+            <div class="avatar">{{ post.author.username|first|upper }}</div>
+
+            <div>
+                <h4>{{ post.author.username }}</h4>
+
+                <small> {{ post.time_since_created }} </small>
+            </div>
+        </header>
+
+        <h1>{{ post.title }}</h1>
+
+        <p class="post-description">{{ post.description }}</p>
+
+        <div class="post-footer">
+            <div class="stats">
+                <span> 👁 {{ post.views }} </span>
+
+                <span> 💬 {{ comments.count }} </span>
+
+                <span> ❤️ {{ post.likes_count }} </span>
+            </div>
+
+            <div class="buttons">
+                <button>❤️ Like</button>
+            </div>
+        </div>
+    </article>
+
+    <section class="comments-box">
+        <h2>Comments</h2>
+
+        <form class="comment-form">
+            <textarea placeholder="Write a comment..."></textarea>
+
+            <button>Send</button>
+        </form>
+
+        <div class="comments-list">
+            {% for comment in comments %}
+
+            <div class="comment">
+                <div class="comment-top">
+                    <div class="comment-avatar">{{ comment.user.username|first|upper }}</div>
+
+                    <div>
+                        <strong> {{ comment.user.username }} </strong>
+                        <small> {{ comment.time_since_created }} </small>
+                    </div>
+                </div>
+
+                <p>{{ comment.content }}</p>
+            </div>
+
+            {% empty %}
+
+            <p class="empty">No comments yet</p>
+
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+{% endblock %}

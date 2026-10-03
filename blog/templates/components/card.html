@@ -1,0 +1,38 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'css/post-card.css' %}" />
+
+<article class="post-card">
+    <a class="post-card__image" href="{{ post.get_absolute_url }}">
+        {% if post.image %}
+
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+
+        {% else %}
+
+        <div class="post-card__placeholder">تصویر ندارد</div>
+
+        {% endif %}
+    </a>
+
+    <div class="post-card__body">
+        <h2 class="post-card__title">
+            <a href="{{ post.get_absolute_url }}"> {{ post.title }} </a>
+        </h2>
+
+        {% if post.description %} {% endif %}
+
+        <div class="post-card__meta">
+            <span>👤 {{ post.author.username }}</span>
+            <span>👁 {{ post.views }}</span>
+            <span>❤️ {{ post.likes_count }}</span>
+            <span>💬 {{ post.comments_count }}</span>
+        </div>
+
+        <div class="post-card__footer">
+            <span> {{ post.time_since_created }} </span>
+
+            <a href="{{ post.get_absolute_url }}"> مشاهده پست → </a>
+        </div>
+    </div>
+</article>

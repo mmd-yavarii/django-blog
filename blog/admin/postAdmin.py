@@ -3,8 +3,6 @@ from ..models import Post
 
 from django.urls import reverse
 from django.utils.html import format_html
-from jdatetime import datetime
-
 
 
 @admin.action(description="آرشیو کردن")
@@ -48,5 +46,4 @@ class Post_Admin (admin.ModelAdmin):
 
     @admin.display(description="تاریخ")
     def custom_created_at (self , obj):
-        formatted = datetime.fromgregorian(datetime=obj.created_at).strftime("%Y/%m/%d - %H:%M")
-        return formatted
+        return obj.persian_created_date

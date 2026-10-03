@@ -1,0 +1,170 @@
+.post-card {
+    width: 100%;
+    max-width: 380px;
+
+    background: #fff;
+
+    border-radius: 22px;
+
+    overflow: hidden;
+
+    border: 1px solid #eeeeee;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+
+    transition: 0.35s ease;
+}
+
+.post-card:hover {
+    transform: translateY(-8px);
+
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+/* IMAGE */
+
+.post-card__image {
+    display: block;
+
+    width: 100%;
+
+    height: 240px;
+
+    overflow: hidden;
+
+    background: #f1f1f1;
+}
+
+.post-card__image img {
+    width: 100%;
+
+    height: 100%;
+
+    /*
+      جلوگیری از زوم شدید
+    */
+
+    object-fit: cover;
+
+    object-position: center;
+
+    transition: transform 0.5s ease;
+}
+
+.post-card:hover img {
+    transform: scale(1.05);
+}
+
+.post-card__placeholder {
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: #999;
+
+    font-size: 15px;
+}
+
+/* BODY */
+
+.post-card__body {
+    padding: 22px;
+}
+
+.post-card__title {
+    margin: 0 0 12px;
+
+    font-size: 22px;
+
+    font-weight: 700;
+}
+
+.post-card__title a {
+    color: #111;
+
+    text-decoration: none;
+}
+
+.post-card__title a:hover {
+    color: #555;
+}
+
+.post-card__description {
+    color: #666;
+
+    line-height: 1.8;
+
+    font-size: 15px;
+
+    margin-bottom: 20px;
+}
+
+/* META */
+
+.post-card__meta {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    color: #777;
+
+    font-size: 13px;
+
+    margin-bottom: 20px;
+}
+
+.post-card__meta span {
+    background: #f7f7f7;
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+}
+
+/* FOOTER */
+
+.post-card__footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding-top: 15px;
+
+    border-top: 1px solid #eee;
+
+    font-size: 13px;
+
+    color: #888;
+}
+
+.post-card__footer a {
+    color: #111;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+.post-card__footer a:hover {
+    opacity: 0.7;
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+    .post-card {
+        max-width: 100%;
+    }
+
+    .post-card__image {
+        height: 220px;
+    }
+}

@@ -6,7 +6,7 @@ from django.urls import reverse
 @admin.register(Comment)
 class Comment_Admin(admin.ModelAdmin):
 
-    list_display = ["id",'user_name','post_list','created_at']
+    list_display = ["id",'user_name','post_list','persian_created_date']
 
     @admin.display(description="User")
     def user_name(self, obj):

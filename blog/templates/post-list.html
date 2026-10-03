@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+<!--  -->
+{% load static %}
+<!--  -->
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/post-list.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="posts-search">
+    <form method="GET">
+        <input type="text" name="search" placeholder="جستجوی پست..." value="{{ request.GET.search|default_if_none:'' }}" />
+
+        <button type="submit">جستجو</button>
+    </form>
+</div>
+
+<div class="posts-container">
+    {% for post in posts %}
+    <!--  -->
+    {% include "components/card.html" with post=post %}
+    <!--  -->
+    {% empty %}
+
+    <p class="empty-post">هیچ پستی پیدا نشد.</p>
+
+    {% endfor %}
+</div>
+
+{% endblock %}

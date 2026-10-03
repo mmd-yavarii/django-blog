@@ -2,6 +2,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from jdatetime import datetime
+from django.utils import timezone
 
 from uuid import uuid4
 
@@ -20,8 +22,9 @@ class Post (models.Model):
     description = models.TextField(null=True , blank=True , verbose_name="توضیحات")
     slug = models.SlugField(unique=True , verbose_name="اسلاگ")
     is_deleted = models.BooleanField(default=False)
+    views = models.IntegerField(default=0)
 
-    image = models.ImageField(upload_to="media/posts/", null=True , blank=True, verbose_name="تصویر")
+    image = models.ImageField(upload_to="posts/",null=True,blank=True,verbose_name="تصویر")
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -53,6 +56,33 @@ class Post (models.Model):
     @property
     def comments_count (self):
         return self.comments.count()
+
+    @property
+    def persian_created_date (self):
+        formatted = datetime.fromgregorian(datetime=self.created_at).strftime("%Y/%m/%d - %H:%M")
+        return formatted
+
+    @property
+    def time_since_created(self):
+        now = timezone.now()
+        diff = now - self.created_at
+        seconds = diff.total_seconds()
+        if seconds < 60:
+            return "همین الان"
+        minutes = seconds // 60
+        if minutes < 60:
+            return f"{int(minutes)} دقیقه پیش"
+        hours = minutes // 60
+        if hours < 24:
+            return f"{int(hours)} ساعت پیش"
+        days = hours // 24
+        if days < 30:
+            return f"{int(days)} روز پیش"
+        months = days // 30
+        if months < 12:
+            return f"{int(months)} ماه پیش"
+        years = months // 12
+        return f"{int(years)} سال پیش"
 
     def delete(self, *args , **kwargs):
         self.is_deleted = True

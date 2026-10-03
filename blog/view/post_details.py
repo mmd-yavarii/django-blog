@@ -1,36 +1,39 @@
-from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
+from django.db.models import F
 from ..models import Post, Comment
 
 
 def post_details(request, id):
 
-    if request.method != "GET":
-        return JsonResponse({"message" : "bad request"} , status=400)
+    post = get_object_or_404(
+        Post.published,
+        id=id
+    )
 
-    post = Post.published.get(id=id)
-    comments = Comment.objects.filter(post=post)
+    Post.published.filter(id=id).update(
+        views=F("views") + 1
+    )
+
+    post.refresh_from_db()
+
+
+    comments = Comment.objects.filter(
+        post=post
+    ).select_related(
+        "user"
+    ).order_by(
+        "-created_at"
+    )
+
 
     context = {
-        "post": {
-            "id": str(post.id),
-            "title": post.title,
-            "description": post.description,
-            "author": post.author.username,
-            "likes_count": post.likes_count,
-            "comments_count": post.comments_count
-        },
-
-        "comments": list(
-            comments.values(
-                "id",
-                "content",
-                "created_at",
-                "user__username"
-            )
-        ),
+        "post": post,
+        "comments": comments
     }
 
-    return JsonResponse(
-        {"message": "message", "data": context},
-        status=200
+
+    return render(
+        request,
+        "post-details.html",
+        context
     )
