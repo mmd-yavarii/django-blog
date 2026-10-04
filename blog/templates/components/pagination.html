@@ -1,0 +1,52 @@
+<div style="display: flex; justify-content: center; align-items: center; gap: 16px; direction: rtl; margin: 32px auto; padding: 16px">
+    {% if posts.has_next %}
+    <a
+        href="?page={{ posts.next_page_number }}"
+        style="
+            padding: 10px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        "
+    >
+        صفحه بعد
+    </a>
+    {% endif %}
+
+    <p
+        style="
+            margin: 0;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #f1f5f9;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+        "
+    >
+        {{ posts.number }} / {{ posts.paginator.num_pages }}
+    </p>
+
+    {% if posts.has_previous %}
+    <a
+        href="?page={{ posts.previous_page_number }}"
+        style="
+            padding: 10px 20px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #334155;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+        "
+    >
+        صفحه قبل
+    </a>
+    {% endif %}
+</div>
