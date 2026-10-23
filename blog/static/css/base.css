@@ -1,70 +1,109 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.ticket-container {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    direction: rtl;
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
-    color: #333;
-    line-height: 1.6;
-}
-
-main {
-    width: 100%;
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 0 20px;
-    min-height: 70vh;
-}
-
-h1 {
+.ticket-container h1 {
     color: #222;
-    font-size: clamp(28px, 4vw, 36px);
+    font-size: clamp(24px, 4vw, 32px);
+    margin-bottom: 10px;
+}
+
+.ticket-description {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.ticket-form p {
     margin-bottom: 20px;
-    line-height: 1.2;
 }
 
-h2 {
-    color: #444;
-    font-size: clamp(20px, 3vw, 28px);
-    margin-bottom: 15px;
+.ticket-form label {
+    display: block;
+    margin-bottom: 7px;
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
 }
 
-p {
-    font-size: clamp(14px, 2vw, 16px);
-    margin-bottom: 15px;
+.ticket-form input,
+.ticket-form textarea,
+.ticket-form select {
+    display: block;
+    width: 100%;
+    padding: 11px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #333;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 1.6;
+    outline: none;
+    transition: border-color 0.2s;
 }
 
-/* Tablet */
+.ticket-form input,
+.ticket-form select {
+    min-height: 44px;
+}
+
+.ticket-form textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.ticket-form input:focus,
+.ticket-form textarea:focus,
+.ticket-form select:focus {
+    border-color: #555;
+}
+
+.ticket-form button {
+    display: block;
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #333;
+    color: #fff;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ticket-form button:hover {
+    background-color: #222;
+}
+
+.ticket-form .errorlist {
+    margin: 6px 0 0;
+    padding-right: 20px;
+    color: #c62828;
+    font-size: 13px;
+}
+
 @media (max-width: 768px) {
-    main {
-        margin: 30px auto;
-        padding: 0 16px;
+    .ticket-container {
+        padding: 24px;
     }
 }
 
-/* Mobile */
 @media (max-width: 480px) {
-    body {
-        line-height: 1.5;
+    .ticket-container {
+        padding: 18px 14px;
+        border-radius: 6px;
     }
 
-    main {
-        margin: 20px auto;
-        padding: 0 12px;
-    }
-
-    h1 {
-        margin-bottom: 15px;
-    }
-
-    h2 {
-        margin-bottom: 10px;
-    }
-
-    p {
-        margin-bottom: 12px;
+    .ticket-form input,
+    .ticket-form textarea,
+    .ticket-form select {
+        font-size: 14px;
     }
 }

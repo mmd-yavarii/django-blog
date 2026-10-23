@@ -8,11 +8,11 @@
         <li class="logo">MyBlog</li>
 
         <li>
-            <a href="/">درباره ما</a>
+            <a href="{% url 'blog:ticket' %}">تیکت ها</a>
         </li>
 
         <li>
-            <a href="/posts/">پست‌ها</a>
+            <a href="{% url 'blog:posts_list' %}">پست‌ها</a>
         </li>
 
         {% if user.is_authenticated %}

@@ -1,0 +1,116 @@
+.ticket-container {
+    width: min(100% - 32px, 600px);
+    margin: 48px auto;
+    padding: 32px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+    direction: rtl;
+    color: #1f2937;
+}
+
+.ticket-container h1 {
+    margin: 0 0 10px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.ticket-description {
+    margin-bottom: 28px;
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.ticket-form p {
+    margin: 0 0 20px;
+}
+
+.ticket-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #374151;
+}
+
+.ticket-form input,
+.ticket-form textarea,
+.ticket-form select {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 9px;
+    background: #fff;
+    color: #111827;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.ticket-form input,
+.ticket-form select {
+    min-height: 46px;
+}
+
+.ticket-form textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.8;
+}
+
+.ticket-form input:focus,
+.ticket-form textarea:focus,
+.ticket-form select:focus {
+    border-color: black;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.ticket-form button {
+    width: 100%;
+    min-height: 48px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 9px;
+    background: black;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition:
+        background 0.2s,
+        transform 0.2s;
+}
+
+.ticket-form button:hover {
+    background: rgb(27, 27, 27);
+}
+
+.ticket-form button:active {
+    transform: scale(0.99);
+}
+
+.ticket-form ul.errorlist {
+    margin: 8px 0 0;
+    padding-right: 18px;
+    color: #dc2626;
+    font-size: 13px;
+}
+
+@media (max-width: 480px) {
+    .ticket-container {
+        margin: 24px auto;
+        padding: 22px 18px;
+        border-radius: 12px;
+    }
+
+    .ticket-container h1 {
+        font-size: 22px;
+    }
+}

@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/ticket.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="ticket-container">
+    <h1>ارسال تیکت</h1>
+
+    <form action="" method="post" class="ticket-form">
+        {% csrf_token %} {{ form.as_p }}
+
+        <button type="submit">ارسال تیکت</button>
+    </form>
+</div>
+
+{% endblock %}
