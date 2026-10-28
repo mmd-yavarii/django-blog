@@ -4,7 +4,11 @@
 
 <div class="post-page">
     <article class="post-card">
-        <div class="post-image"><img src="{{ post.image.url }}" alt="{{ post.title }}" /></div>
+        <div class="post-image">
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+            {% endif %}
+        </div>
 
         <header class="post-header">
             <div class="avatar">{{ post.author.username|first|upper }}</div>

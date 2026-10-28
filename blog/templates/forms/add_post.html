@@ -1,0 +1,15 @@
+{% extends "base.html" %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/add_post.css' %}" />
+{% endblock %} {% block content %}
+<div class="post-container">
+    <h1>افزودن پست</h1>
+
+    <p class="post-description">اطلاعات پست جدید را وارد کنید.</p>
+
+    <form action="" method="post" class="post-form" enctype="multipart/form-data">
+        {% csrf_token %} {{ form.as_p }}
+
+        <button type="submit">ثبت پست</button>
+    </form>
+</div>
+{% endblock %}

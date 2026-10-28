@@ -1,69 +1,79 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .posts-search {
+    width: 100%;
     max-width: 1200px;
     margin: 20px auto;
     padding: 0 20px;
+    min-width: 0;
 }
 
 .posts-search form {
     display: flex;
     gap: 10px;
+    width: 100%;
+    min-width: 0;
 }
 
 .posts-search input {
     flex: 1;
-
+    min-width: 0;
+    width: 100%;
     padding: 12px 15px;
-
     border: 1px solid #ddd;
-
     border-radius: 8px;
-
     font-size: 16px;
 }
 
 .posts-search button {
+    flex-shrink: 0;
     padding: 12px 25px;
-
     border: none;
-
     border-radius: 8px;
-
     background: #222;
-
     color: white;
-
     cursor: pointer;
 }
 
 .posts-container {
     width: 100%;
-
     max-width: 1200px;
-
     margin: 0 auto;
-
     padding: 20px;
-
     display: grid;
-
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
     gap: 24px;
+    min-width: 0;
+}
+
+.posts-container > * {
+    min-width: 0;
+    max-width: 100%;
 }
 
 .empty-post {
     grid-column: 1 / -1;
-
     text-align: center;
-
     font-size: 18px;
-
     color: #777;
+    overflow-wrap: anywhere;
 }
 
 @media (max-width: 600px) {
+    .posts-search {
+        padding: 0 15px;
+    }
+
     .posts-search form {
         flex-direction: column;
+    }
+
+    .posts-search input {
+        flex: auto;
     }
 
     .posts-search button {
@@ -72,5 +82,6 @@
 
     .posts-container {
         padding: 15px;
+        gap: 16px;
     }
 }
