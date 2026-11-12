@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% load static %} {% block title %}ورود به حساب کاربری{% endblock %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <h1>خوش آمدید!</h1>
+        <p class="subtitle">برای ورود، اطلاعات حساب خود را وارد کنید.</p>
+
+        <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+
+            <button type="submit">ورود</button>
+        </form>
+
+        <div class="auth-footer">
+            حساب کاربری ندارید؟
+            <a href="{% url 'blog:signup' %}">ثبت نام کنید</a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,150 @@
+.auth-container {
+    min-height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background: #f4f6fb;
+}
+
+.auth-card {
+    width: 100%;
+    max-width: 460px;
+    padding: 35px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
+    box-sizing: border-box;
+}
+
+.auth-card h1 {
+    text-align: center;
+    color: #1e293b;
+    font-size: 26px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.auth-card form p {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 0 0 22px;
+}
+
+.auth-card label {
+    color: #334155;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.auth-card input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    outline: none;
+    font-size: 14px;
+    box-sizing: border-box;
+    transition: 0.2s;
+}
+
+.auth-card input:hover {
+    border-color: #93c5fd;
+}
+
+.auth-card input:focus {
+    border-color: dodgerblue;
+    box-shadow: 0 0 0 3px rgba(30, 144, 255, 0.14);
+}
+
+/* Help Text */
+
+.auth-card .helptext {
+    display: block;
+    color: #64748b;
+    background: #f0f7ff;
+    border-right: 3px solid dodgerblue;
+    border-radius: 6px;
+    padding: 10px 12px;
+    font-size: 12px;
+    line-height: 2;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Error Messages */
+
+.auth-card .errorlist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: #dc2626;
+    font-size: 12px;
+    line-height: 1.8;
+}
+
+/* Button */
+
+.auth-card button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 10px;
+    border: none;
+    border-radius: 8px;
+    background: dodgerblue;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.auth-card button:hover {
+    background: #1473c9;
+    box-shadow: 0 4px 12px rgba(30, 144, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.auth-card button:active {
+    transform: translateY(0);
+}
+
+/* Footer */
+
+.auth-footer {
+    text-align: center;
+    margin-top: 25px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.auth-footer a {
+    color: dodgerblue;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.auth-footer a:hover {
+    color: #1473c9;
+    text-decoration: underline;
+}
+
+/* Responsive */
+
+@media (max-width: 480px) {
+    .auth-card {
+        padding: 25px 20px;
+    }
+
+    .auth-card h1 {
+        font-size: 23px;
+    }
+}

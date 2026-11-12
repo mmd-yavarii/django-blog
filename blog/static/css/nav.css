@@ -1,9 +1,10 @@
 nav {
     width: 100%;
-    padding: 18px 24px;
-    background: rgba(255, 255, 255, 0.7);
+    padding: 16px 30px;
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(12px);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid #e2e8f0;
+    box-sizing: border-box;
 }
 
 nav ul {
@@ -17,21 +18,23 @@ nav ul {
 }
 
 nav a {
-    color: #333;
+    color: #334155;
     text-decoration: none;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
-    transition: color 0.2s ease;
+    transition: 0.2s ease;
 }
 
 nav a:hover {
-    color: #000;
+    color: dodgerblue;
 }
 
 nav .logo {
     font-size: 22px;
-    font-weight: 700;
+    font-weight: 800;
+    color: dodgerblue;
     margin-right: auto;
+    cursor: pointer;
 }
 
 .user-avatar {
@@ -45,7 +48,47 @@ nav .logo {
     height: 42px;
     border-radius: 50%;
     object-fit: cover;
-    border: 2px solid rgba(0, 0, 0, 0.1);
+    border: 2px solid #bfdbfe;
+    transition: 0.2s ease;
+}
+
+.user-avatar img:hover {
+    border-color: dodgerblue;
+    transform: scale(1.05);
+}
+
+/* Login Button */
+
+.login-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 22px;
+    background: linear-gradient(135deg, #1e90ff, #1473c9);
+    color: #fff !important;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 4px 10px rgba(30, 144, 255, 0.2);
+    transition: all 0.25s ease;
+}
+
+.login-btn:hover {
+    background: linear-gradient(135deg, #1473c9, #095ba8);
+    box-shadow: 0 6px 16px rgba(30, 144, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.login-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(30, 144, 255, 0.2);
+}
+
+.login-btn:focus-visible {
+    outline: 3px solid rgba(30, 144, 255, 0.3);
+    outline-offset: 3px;
 }
 
 @media (max-width: 480px) {
@@ -58,6 +101,14 @@ nav .logo {
     }
 
     nav a {
-        font-size: 14px;
+        font-size: 13px;
+    }
+
+    nav .logo {
+        font-size: 19px;
+    }
+
+    .login-btn a {
+        padding: 7px 12px;
     }
 }
