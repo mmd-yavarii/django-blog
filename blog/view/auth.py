@@ -1,10 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required 
 from django.views.decorators.http import require_http_methods , require_GET , require_POST
-
 from ..forms import SignupForm, LoginForm
-
 from django.contrib.auth import login , authenticate , logout
+from ..models import Post
 
 
 # create account 
@@ -40,5 +39,14 @@ def login_view (request):
 @login_required
 def profile (request):
     user = request.user 
-    return render(request , "auth/profile.html", {"user" : user})
+    posts = Post.objects.filter(author=user)
+    return render(request , "auth/profile.html", {"user" : user, "posts" : posts})
 
+
+
+# logout 
+@login_required
+@require_POST
+def logout_view (request):
+    logout(request)
+    return redirect("blog:login")

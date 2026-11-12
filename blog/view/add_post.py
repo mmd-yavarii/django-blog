@@ -3,14 +3,17 @@ from ..forms import PostForm
 
 from django.contrib.auth.models import User
 from ..models.Post import Post
+from django.contrib.auth.decorators import login_required
 
+
+@login_required
 def add_post (request):
     if request.method == "POST":
         form_obj = PostForm(request.POST, request.FILES)
 
         if form_obj.is_valid():
             cleaned = form_obj.cleaned_data
-            user = User.objects.first()
+            user = request.user
 
             new_post = Post(
                 title=cleaned["title"], 

@@ -14,19 +14,19 @@
             <a href="{% url 'blog:posts_list' %}">پست‌ها</a>
         </li>
 
+        {% if request.user.is_authenticated %}
         <li>
-            {% if request.user.is_authenticated %}
             <a href="{% url 'blog:add_post' %}">افزودن پست</a>
-            {% else %}
-            <a href="{% url 'blog:login' %}" class="login-btn">ورود / ثبت‌نام</a>
-            {% endif %}
         </li>
 
-        {% if request.user.is_authenticated %}
-        <li class="user-avatar">
-            {% if request.user.profile.avatar %}
-            <img src="{{ request.user.profile.avatar.url }}" alt="avatar" />
-            {% endif %}
+        <li>
+            <a href="{% url 'blog:profile' %}" class="user-avatar">
+                <img src="{% static 'avatar.webp' %}" alt="پروفایل" />
+            </a>
+        </li>
+        {% else %}
+        <li>
+            <a href="{% url 'blog:login' %}" class="login-btn"> ورود / ثبت‌نام </a>
         </li>
         {% endif %}
     </ul>

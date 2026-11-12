@@ -1,11 +1,104 @@
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-    </head>
-    <body>
-        hello
-    </body>
-</html>
+{% extends "base.html" %} {% load static %} {% block title %}پروفایل کاربری{% endblock %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="profile-container">
+    <div class="profile-card">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-avatar">
+                <img src="{% static 'avatar.webp' %}" alt="Avatar" />
+            </div>
+
+            <h2>{{ request.user.username }}</h2>
+            <p>پروفایل کاربری</p>
+        </div>
+
+        <!-- User Information -->
+        <div class="profile-info">
+            <div class="info-item">
+                <span>نام کاربری</span>
+                <strong>{{ request.user.username }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>ایمیل</span>
+                <strong>{{ request.user.email|default:"ثبت نشده" }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>نام</span>
+                <strong>{{ request.user.first_name|default:"ثبت نشده" }}</strong>
+            </div>
+
+            <div class="info-item">
+                <span>نام خانوادگی</span>
+                <strong>{{ request.user.last_name|default:"ثبت نشده" }}</strong>
+            </div>
+        </div>
+
+        <!-- Profile Actions -->
+        <div class="profile-actions">
+            <button type="button" class="edit-profile-btn">ویرایش پروفایل</button>
+
+            <form method="post" action="{% url 'blog:logout' %}">
+                {% csrf_token %}
+
+                <button type="submit" class="logout-btn" onclick="return confirm('آیا مطمئن هستید که می‌خواهید از حساب خود خارج شوید؟');">
+                    خروج از حساب
+                </button>
+            </form>
+        </div>
+
+        <!-- My Posts -->
+        <div class="my-posts">
+            <div class="my-posts-header">
+                <h3>پست‌های من</h3>
+                <span>{{ posts.count }} پست</span>
+            </div>
+
+            {% for post in posts %}
+
+            <div class="my-post-card">
+                <!-- Post Image -->
+                <div class="my-post-image">
+                    {% if post.image %}
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" />
+                    {% else %}
+                    <div class="no-post-image">بدون تصویر</div>
+                    {% endif %}
+                </div>
+
+                <!-- Post Content -->
+                <div class="my-post-content">
+                    <div class="my-post-info">
+                        <h4>{{ post.title }}</h4>
+
+                        <span class="post-date"> {{ post.persian_created_date }} </span>
+                    </div>
+
+                    <div class="my-post-meta">
+                        <!-- Post Status -->
+                        <span
+                            class="post-status {% if post.status == 'PB' %} status-published {% elif post.status == 'DR' %} status-draft {% elif post.status == 'RJ' %} status-rejected {% endif %}"
+                        >
+                            {{ post.get_status_display }}
+                        </span>
+
+                        <span class="post-views"> {{ post.views }} بازدید </span>
+
+                        <a href="{{ post.get_absolute_url }}" class="view-post-btn"> مشاهده پست </a>
+                    </div>
+                </div>
+            </div>
+
+            {% empty %}
+
+            <div class="no-posts">هنوز هیچ پستی ثبت نکرده‌اید.</div>
+
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
