@@ -1,0 +1,31 @@
+{% extends "base.html" %} {% load static %} {% block title %}ویرایش پروفایل{% endblock %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/change-info.css' %}" />
+{% endblock %} {% block content %}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <!-- Header -->
+        <div class="auth-header">
+            <div class="profile-icon">
+                <span>✎</span>
+            </div>
+
+            <h1>ویرایش پروفایل</h1>
+            <p class="subtitle">اطلاعات حساب کاربری خود را ویرایش کنید.</p>
+        </div>
+
+        <!-- Form -->
+        <form method="post">
+            {% csrf_token %} {{ form.as_p }}
+
+            <button type="submit">ذخیره تغییرات</button>
+        </form>
+
+        <!-- Footer -->
+        <div class="auth-footer">
+            <a href="{% url 'blog:profile' %}"> بازگشت به پروفایل </a>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

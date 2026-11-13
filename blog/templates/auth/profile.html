@@ -39,7 +39,7 @@
 
         <!-- Profile Actions -->
         <div class="profile-actions">
-            <button type="button" class="edit-profile-btn">ویرایش پروفایل</button>
+            <a href="{% url 'blog:change_info' %}" class="edit-profile-btn"> ویرایش پروفایل </a>
 
             <form method="post" action="{% url 'blog:logout' %}">
                 {% csrf_token %}
